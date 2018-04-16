@@ -102,7 +102,7 @@ function scoreBtnHandler(url) {
                 // }, 1000);
             });
         });
-    } // jquery on ready
+    }); // jquery on ready
 }
 
 function widget_builder(ph_subdomain){
@@ -150,7 +150,7 @@ function widget_builder(ph_subdomain){
 
         wrapper_div.appendChild(score_wrapper_div);
         document.body.appendChild(wrapper_div);
-    }
+    }); // jquery ready
 }
 
 
