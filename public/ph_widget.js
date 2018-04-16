@@ -171,13 +171,14 @@ function main() {
         widget_builder(ph_subdomain);
         scoreBtnHandler(score_url_final);
 
-        setTimeout(function($){
+        animate_me();
+        function animate_me(){
           $('.ph_widget').animate({
             'bottom': '0px'
-          }, 850, "swing", function(){
+          }, 850, "swing", function(){});
+          setTimeout(animate_me, 200);
+        }
 
-          });
-        }, 200);
 
         $('.ph_close-widget').click(function() {
           $('.ph_widget').animate({
