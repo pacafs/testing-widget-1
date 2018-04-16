@@ -171,7 +171,7 @@ function main() {
         widget_builder(ph_subdomain);
         scoreBtnHandler(score_url_final);
 
-        setTimeout(function(){
+        setTimeout(function($){
           $('.ph_widget').animate({
             'bottom': '0px'
           }, 850, "swing", function(){
@@ -193,3 +193,7 @@ function main() {
 
 
 })(); // We call our anonymous function immediately
+
+
+
+
