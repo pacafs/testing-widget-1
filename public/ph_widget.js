@@ -171,12 +171,12 @@ function main() {
         widget_builder(ph_subdomain);
         scoreBtnHandler(score_url_final);
 
-        animate_me();
-        function animate_me(){
+        animate_me($);
+        function animate_me($){
           $('.ph_widget').animate({
             'bottom': '0px'
           }, 850, "swing", function(){});
-          setTimeout(animate_me, 200);
+          setTimeout(animate_me($), 200);
         }
 
 
