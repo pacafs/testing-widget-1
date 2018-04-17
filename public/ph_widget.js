@@ -23,7 +23,7 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
     // The jQuery version on the window is the one we want to use
     jQuery = window.jQuery;
     jQuery(document).ready(function($) {
-        main();
+        main($);
     });
 }
 
@@ -35,7 +35,7 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
         jQuery = window.jQuery.noConflict(true);
         // Call our main function
         jQuery(document).ready(function($) {
-            main();
+            main($);
         });
     }
 
@@ -156,7 +156,7 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
 
 
     /******** Our main function ********/
-    function main() {
+    function main($) {
             // We can use jQuery 1.4.2 here
             var src_params = getParams("ph_widget.js");
             var ph_subdomain = src_params["company"];
