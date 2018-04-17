@@ -171,7 +171,7 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
             widget_builder(ph_subdomain);
             scoreBtnHandler($, score_url_final);
 
-            setTimeout(function(){
+            setTimeout(function($){
               $('.ph_widget').animate({
                 'bottom': '0px'
               }, 850, "swing", function(){
