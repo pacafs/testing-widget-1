@@ -18,7 +18,7 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
       script_tag.onload = scriptLoadHandler;
     }
     // Try to find the head, otherwise default to the documentElement
-    (document.getElementsByTagName("body")[0] || document.documentElement).appendChild(script_tag);
+    document.documentElement.appendChild(script_tag);
 } else {
     // The jQuery version on the window is the one we want to use
     jQuery = window.jQuery;
