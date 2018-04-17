@@ -77,7 +77,7 @@ function scoreBtnHandler(url) {
                   }, 850, "swing", function(){
                   });
                 });
-            }, 500);
+            }.bind($), 500);
 
             // $(".ph_widget-score-wrapper").hide('slow', function() {
             // });
@@ -96,13 +96,13 @@ function scoreBtnHandler(url) {
                   'bottom': '-225px'
                 }, 850, "swing", function(){
                 });
-              }, 10000);
+              }.bind($), 10000);
                 // setTimeout(function(){
                 //     $(".ph_widget").removeClass("slideInUp").addClass("slideOutDown");
                 // }, 1000);
             });
         });
-    }); // jquery on ready
+    } // jquery on ready
 }
 
 function widget_builder(ph_subdomain){
@@ -171,14 +171,13 @@ function main() {
         widget_builder(ph_subdomain);
         scoreBtnHandler(score_url_final);
 
-        animate_me($);
-        function animate_me($){
+        setTimeout(function(){
           $('.ph_widget').animate({
             'bottom': '0px'
-          }, 850, "swing", function(){});
-          setTimeout(animate_me($), 200);
-        }
+          }, 850, "swing", function(){
 
+          });
+        }.bind($), 200);
 
         $('.ph_close-widget').click(function() {
           $('.ph_widget').animate({
@@ -194,7 +193,3 @@ function main() {
 
 
 })(); // We call our anonymous function immediately
-
-
-
-
