@@ -1,10 +1,10 @@
 (function() {
 
 // Localize jQuery variable
-var jQuery;
+var $;
 
 /******** Load jQuery if not present *********/
-if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
+if (window.jQuery === undefined) {
     var script_tag = document.createElement('script');
     script_tag.setAttribute("type","text/javascript");
     script_tag.setAttribute("src","https://code.jquery.com/jquery-3.3.1.slim.min.js");
@@ -21,10 +21,8 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
     document.documentElement.appendChild(script_tag);
 } else {
     // The jQuery version on the window is the one we want to use
-    jQuery = window.jQuery;
-    jQuery(document).ready(function($) {
-        main($);
-    });
+    $ = window.jQuery;
+    main();
 }
 
 
@@ -32,11 +30,9 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
     function scriptLoadHandler() {
         // Restore $ and window.jQuery to their previous values and store the
         // new jQuery in our local jQuery variable
-        jQuery = window.jQuery.noConflict(true);
+        $ = window.jQuery.noConflict(true);
         // Call our main function
-        jQuery(document).ready(function($) {
-            main($);
-        });
+        main();
     }
 
     function getParams(script_name) {
@@ -61,7 +57,7 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
     }
 
 
-    function scoreBtnHandler($, url) {
+    function scoreBtnHandler(url) {
             $(".ph_widget-score-item").on("click", function(e){
                 $(".ph_widget-question, .ph_widget-score-wrapper").fadeOut('slow');
                 setTimeout(function(){
@@ -95,31 +91,13 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
                     },
                     dataType: 'json'
                 }).always(function() {
-                  setTimeout(function(){
-                    $('.ph_widget').animate({
-                      'bottom': '-225px'
-                    }, 850, "swing", function(){
-                    });
-                  }, 10000);
-                    // setTimeout(function(){
-                    //     $(".ph_widget").removeClass("slideInUp").addClass("slideOutDown");
-                    // }, 1000);
+                      setTimeout(function(){
+                        $('.ph_widget').animate({
+                          'bottom': '-225px'
+                        }, 850, "swing", function(){
+                        });
+                      }, 10000);
                 });
-            });
-
-            setTimeout(function(){
-              $('.ph_widget').animate({
-                'bottom': '0px'
-              }, 850, "swing", function(){
-
-              });
-            }, 200);
-
-            $('.ph_close-widget').click(function() {
-              $('.ph_widget').animate({
-                'bottom': '-225px'
-              }, 850, "swing", function(){
-              });
             });
     }
 
@@ -171,7 +149,7 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
 
 
     /******** Our main function ********/
-    function main($) {
+    function main() {
             // We can use jQuery 1.4.2 here
             var src_params = getParams("ph_widget.js");
             var ph_subdomain = src_params["company"];
@@ -184,10 +162,23 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
             });
             css_link.appendTo('head');
             widget_builder(ph_subdomain);
-            scoreBtnHandler($, score_url_final);
+            scoreBtnHandler(score_url_final);
 
+            setTimeout(function(){
+              $('.ph_widget').animate({
+                'bottom': '0px'
+              }, 850, "swing", function(){
 
+              });
+            }, 200);
+
+            $('.ph_close-widget').click(function() {
+              $('.ph_widget').animate({
+                'bottom': '-225px'
+              }, 850, "swing", function(){});
+            });
     }
 
-
 })(); // We call our anonymous function immediately
+
+
