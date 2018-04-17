@@ -106,6 +106,21 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
                     // }, 1000);
                 });
             });
+
+            setTimeout(function(){
+              $('.ph_widget').animate({
+                'bottom': '0px'
+              }, 850, "swing", function(){
+
+              });
+            }, 200);
+
+            $('.ph_close-widget').click(function() {
+              $('.ph_widget').animate({
+                'bottom': '-225px'
+              }, 850, "swing", function(){
+              });
+            });
     }
 
     function widget_builder(ph_subdomain){
@@ -171,21 +186,7 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
             widget_builder(ph_subdomain);
             scoreBtnHandler($, score_url_final);
 
-            setTimeout(function($){
-              $('.ph_widget').animate({
-                'bottom': '0px'
-              }, 850, "swing", function(){
 
-              });
-            }, 200);
-
-            $('.ph_close-widget').click(function() {
-              $('.ph_widget').animate({
-                'bottom': '-225px'
-              }, 850, "swing", function(){
-              });
-            });
-            // addClass("slideInUp animated");
     }
 
 
