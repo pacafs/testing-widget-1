@@ -61,7 +61,7 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
     }
 
 
-    function scoreBtnHandler(url) {
+    function scoreBtnHandler($, url) {
             $(".ph_widget-score-item").on("click", function(e){
                 $(".ph_widget-question, .ph_widget-score-wrapper").fadeOut('slow');
                 setTimeout(function(){
@@ -169,7 +169,7 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
             });
             css_link.appendTo('head');
             widget_builder(ph_subdomain);
-            scoreBtnHandler(score_url_final);
+            scoreBtnHandler($, score_url_final);
 
             setTimeout(function(){
               $('.ph_widget').animate({
