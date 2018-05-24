@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def check_user_ip
-    if check_ip
+    unless check_ip == 'true'
         return head :ok, content_type: "text/html"
     end
   end
@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
                             'GG','GI']
         response = HTTParty.get('http://pro.ip-api.com/json/'+request.remote_ip+'?key=1freiZwhIniYh5w')
         ip = europe_blacklist.any? { |e| e === response['countryCode'] }
-        ip ? cookies['AllowUserIP'] = false : cookies['AllowUserIP'] = true
+        ip ? cookies['AllowUserIP'] = 'false' : cookies['AllowUserIP'] = 'true'
     end
     return cookies['AllowUserIP']
   end
