@@ -1,12 +1,18 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_action :check_ip
+  before_action :check_user_ip
 
   private
 
+  def check_user_ip
+    if check_ip
+        head :ok, content_type: "text/html"
+    end
+  end
+
   def check_ip
-    puts "YOUR IP ADDRESS IS: " + request.remote_ip
+    return cookies['AllowUserIP'] unless cookies['AllowUserIP'].blank?
     europe_blacklist = ['AT','BE','BG','HR','CY','CZ','DK','EE',
                         'FI','FR','DE','GR','HU','IE','IT','LV',
                         'LT','LU','MT','NL','PL','PT','RO','SK',
@@ -18,12 +24,7 @@ class ApplicationController < ActionController::Base
                         'GG','GI']
     response = HTTParty.get('http://pro.ip-api.com/json/'+request.remote_ip+'?key=1freiZwhIniYh5w')
     ip = europe_blacklist.any? { |e| e === response['countryCode'] }
-    if ip
-        puts ip
-        puts response
-    else
-        puts "This User is Allowed!"
-    end
+    ip ? cookies['AllowUserIP'] = false : cookies['AllowUserIP'] = true
   end
 end
 
