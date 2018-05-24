@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def check_user_ip
-    return head :ok, content_type: "text/html" unless !check_ip
+    return head :ok, content_type: "text/html" unless check_ip
   end
 
   def check_ip
