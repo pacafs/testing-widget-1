@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
 
   def check_user_ip
     unless check_ip == 'true'
-        return head :ok, content_type: "text/html"
+        @GMDR = "This is the EU Terms and Conditions..."
+        #return head :ok, content_type: "text/html"
     end
   end
 
@@ -23,7 +24,7 @@ class ApplicationController < ActionController::Base
                             'BM','IO','VG','KY','FK','MS','PN','SH',
                             'GS','TC','AD','LI','MC','SM','VA','JE',
                             'GG','GI']
-        response = HTTParty.get('http://pro.ip-api.com/json/'+request.remote_ip+'?key=1freiZwhIniYh5w')
+        response = HTTParty.get('http://pro.ip-api.com/json/'+ request.remote_ip +'?key=1freiZwhIniYh5w')
         ip = europe_blacklist.any? { |e| e === response['countryCode'] }
         ip ? cookies['AllowUserIP'] = 'false' : cookies['AllowUserIP'] = 'true'
     end
