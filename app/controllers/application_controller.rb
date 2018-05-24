@@ -6,11 +6,11 @@ class ApplicationController < ActionController::Base
   private
 
   def check_user_ip
-    return head :ok, content_type: "text/html" unless check_ip === true
+    return head :ok, content_type: "text/html" unless check_ip
   end
 
   def check_ip
-    return cookies['AllowUserIP'] unless cookies['AllowUserIP'].blank?
+    return cookies['AllowUserIP'] unless !cookies['AllowUserIP']
     europe_blacklist = ['AT','BE','BG','HR','CY','CZ','DK','EE',
                         'FI','FR','DE','GR','HU','IE','IT','LV',
                         'LT','LU','MT','NL','PL','PT','RO','SK',
