@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
 
   def check_ip
     unless cookies['AllowUserIP']
+        puts "Made a request here...."
         europe_blacklist = ['AT','BE','BG','HR','CY','CZ','DK','EE',
                             'FI','FR','DE','GR','HU','IE','IT','LV',
                             'LT','LU','MT','NL','PL','PT','RO','SK',
