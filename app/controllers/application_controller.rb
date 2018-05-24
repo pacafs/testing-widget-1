@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def check_ip
-    puts "YOUR IP ADDRESS IS: " + request.ip
+    puts "YOUR IP ADDRESS IS: " + request.remote_ip
     europe_blacklist = ['AT','BE','BG','HR','CY','CZ','DK','EE',
                         'FI','FR','DE','GR','HU','IE','IT','LV',
                         'LT','LU','MT','NL','PL','PT','RO','SK',
@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
                         'BM','IO','VG','KY','FK','MS','PN','SH',
                         'GS','TC','AD','LI','MC','SM','VA','JE',
                         'GG','GI']
-    response = HTTParty.get('http://pro.ip-api.com/json/'+request.ip+'?key=1freiZwhIniYh5w')
-    ip = europe_blacklist.any? { |e| e == response['countryCode'] }
+    response = HTTParty.get('http://pro.ip-api.com/json/'+request.remote_ip+'?key=1freiZwhIniYh5w')
+    ip = europe_blacklist.any? { |e| e === response['countryCode'] }
     if ip
         puts ip
         puts response
